@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, session
 from werkzeug.utils import secure_filename
 app = Flask(__name__, static_url_path='/static')
-
+import vote
+import socket
 missionGage = 0
 alive_list = ['red', 'blue', 'white', 'black']
 @app.route('/')
@@ -39,10 +40,13 @@ def vote_page():
     global alive_list
     killed_people = 1
     vote.vote(alive_list)
-
     return '<h1>' + str(killed_people) + '</h1>'
-
-
 
 def isImposter(img):
     return False
+
+
+if __name__ == '__main__':
+    IP = str(socket.gethostbyname(socket.gethostname()))
+    app.run(host="165.194.44.20", port=5000, debug=False)
+    app.run()
