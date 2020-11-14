@@ -1,16 +1,16 @@
 
 
-#isCrew
+#isImposter
 #missionCheck
 
 mission_num=10
 completed_mission=[False]*mission_num
 def missionCheck(i):
-    if isCrew(i):
+    if not isImposter(i):
         completed_mission[i]=True
 
-def isCrew(i):
-    temp=True
+def isImposter(i):
+    temp=False
     return temp
 
 
