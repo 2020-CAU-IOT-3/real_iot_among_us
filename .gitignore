@@ -106,4 +106,4 @@ fabric.properties
 .idea/codestream.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm
-
+face_detection_jongik/face/dataset/*.*
