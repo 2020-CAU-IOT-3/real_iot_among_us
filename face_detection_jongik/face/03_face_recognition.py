@@ -28,7 +28,7 @@ cam.set(4, 480) # set video height
 # Define min window size to be recognized as a face
 minW = 0.1*cam.get(3)
 minH = 0.1*cam.get(4)
-
+prev_id = 'None'
 while True:
     ret, img =cam.read()
     #img = cv2.imread("C:\\Users\\yu990\\Desktop\\User.1.1.jpg")
@@ -56,9 +56,12 @@ while True:
         cv2.putText(img, str(id), (x+5,y-5), font, 1, (255,255,255), 2)
         cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)
 
-    #data = {'room':str(room_number),'type': id}
-    #r = requests.post(serverAddress, headers=headers, data=json.dumps(data))
 
+    if prev_id != id:
+    # data = {'room':str(room_number),'type': id}
+    # r = requests.post(serverAddress, headers=headers, data=json.dumps(data))
+        print("now:"+id)
+    prev_id = id
     cv2.imshow('camera',img) 
     k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
     if k == 27:

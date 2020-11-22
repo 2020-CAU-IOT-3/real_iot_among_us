@@ -49,16 +49,16 @@ def missionComplete():
 def missionCompleteShow():
     return '<h1>'+str(missionGage)+'</h1>'
 
+@app.route('/missionCrewUpdate')
+def missionCrewUpdate():
+    return '<h1>'+str(missionGage)+'</h1>'
+
 @app.route('/vote')
 def vote_page():
     global alive_list
     killed_people = 1
     vote.vote(alive_list)
     return '<h1>' + str(killed_people) + '</h1>'
-
-def isImposter(img):
-    return False
-
 
 if __name__ == '__main__':
     IP = str(socket.gethostbyname(socket.gethostname()))
