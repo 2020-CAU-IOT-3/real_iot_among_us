@@ -1,3 +1,4 @@
+"""
 from threading import Thread
 import time
 import cv2
@@ -7,7 +8,7 @@ import os
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('trainer/trainer.yml')
 cascadePath = "/home/pi/face/cascades/haarcascade_frontalface_default.xml"
-faceCascade = cv2.CascadeClassifier(cascadePath);
+faceCascade = cv2.CascadeClassifier(cascadePath)
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 #iniciate id counter
@@ -26,9 +27,9 @@ def missionstarter():
 
     while True:
         # 서버에서 미션 완료 데이터 받아오는 곳(
-        """if 미션 완료:
+        if 미션 완료:
             actflag = 0
-        """
+
         #미션 시작 여부 결정
         if actflag == 0:
             if len(check) <= 50:
@@ -115,7 +116,6 @@ while True:
             id = "unknown"
             confidence = "  {0}%".format(round(100 - confidence))
 
-
         cv2.putText(img, str(id), (x+5,y-5), font, 1, (255,255,255), 2)
         cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)
 
@@ -174,11 +174,14 @@ while True:
         minNeighbors = 5,
         minSize = (int(minW), int(minH)),
        )
+    if len(faces) == 0:
+        id = 'not_human'
+        print("Face Not Found!")
 
     for(x,y,w,h) in faces:
+
         cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
         id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
-
         # Check if confidence is less them 100 ==> "0" is perfect match
         if (confidence < 100):
             id = names[id]
@@ -186,14 +189,14 @@ while True:
         else:
             id = "unknown"
             confidence = "  {0}%".format(round(100 - confidence))
-        
+
         cv2.putText(img, str(id), (x+5,y-5), font, 1, (255,255,255), 2)
         cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)
 
 
 
     if prev_id != id:
-        data = {'room':str(room_number),'type': id}
+        data = {'room': str(room_number), 'type': id}
         r = requests.post(serverAddress, headers=headers, data=json.dumps(data))
         print("now:"+r.text)
     prev_id = id
@@ -205,4 +208,3 @@ while True:
 print("\n [INFO] Exiting Program and cleanup stuff")
 cam.release()
 cv2.destroyAllWindows()
-"""
