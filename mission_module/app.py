@@ -31,20 +31,22 @@ def startCommand(command):
                 r = requests.post(serverAddress+server_command, headers=headers)
 
 def timeoutThread():
+    my_timeout = 30
     global mission_thread_count
     global timeout_count
     print("start_timeout")
-    while True:
+    while my_timeout == timeout_count:
         if(timeout_count > 0):
             timeout_count -= 1
+            my_timeout -= 1
         print(timeout_count)
         if(timeout_count <= 0):
+            mission_thread_count = 0
+            output_str = "$t\n"
+            print(output_str)
+            ser.write(output_str.encode())
             break;
         time.sleep(1)
-    mission_thread_count = 0
-    output_str = "$t\n"
-    print(output_str)
-    ser.write(output_str.encode())
 
 def missionstarter():
     global who_mission
