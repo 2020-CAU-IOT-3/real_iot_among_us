@@ -50,9 +50,10 @@ room_number = 1
 who_mission = [0,0,0,0,0] #None, imposter, crew1, crew2, crew3
 mission_thread = None
 mission_thread_count = 0
-buffer = ''
+
 while True:
     if ser.readable():
+        buffer = ''
         res = ser.read()
         while True:
             if res == '$':
