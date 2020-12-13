@@ -1,7 +1,8 @@
 import serial
 import time
 import threading
-import requests
+import os
+import requests,json
 ser = serial.Serial(
     port='/dev/ttyACM0',
     baudrate=115200,
