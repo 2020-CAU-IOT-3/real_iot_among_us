@@ -55,6 +55,7 @@ while True:
     if ser.readable():
         buffer = ''
         res = ser.read()
+        print('res:"' + str(res)+'"')
         while True:
             if res == '$':
                 print('reset_buffer')
@@ -62,6 +63,7 @@ while True:
                 break;
             while True:
                 res = ser.read()
+                print('res:"' + str(res)+'"')
                 if res == '\n':
                     break;
                 else :
