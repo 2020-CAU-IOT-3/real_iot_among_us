@@ -1,6 +1,6 @@
 import serial
 import threading
-
+import requests
 ser = serial.Serial(
     port='/dev/ttyACM0',
     baudrate=115200,
