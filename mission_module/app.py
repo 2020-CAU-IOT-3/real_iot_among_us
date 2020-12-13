@@ -1,5 +1,5 @@
 import serial
-
+from threading import Thread
 
 ser = serial.Serial(
     port='/dev/ttyACM0',
