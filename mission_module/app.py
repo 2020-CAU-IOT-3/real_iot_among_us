@@ -16,7 +16,7 @@ def startCommand(command):
         mission_thread = Thread(target=missionstarter)
         mission_timeout_thread = Thread(target=timeoutThread)
     elif command == 'e':
-        if mission_thread_count == 1
+        if mission_thread_count == 1:
             mission_thread_count = 0
             max_index = who_mission.index(max(who_mission))
             if max_index != 0 and max_index != 1:
