@@ -29,7 +29,8 @@ def timeoutThread():
     print("start_timeout")
     sleep(5)
     mission_thread_count = 0
-    output_str = "$t"
+    output_str = "$t\n"
+    print(output_str)
     ser.write(output_str.encode())
 
 def missionstarter():
@@ -55,13 +56,17 @@ while True:
     if ser.readable():
         buffer_str = []
         res = ser.read()
-        #print('res:"' + str(res)+'"')
+        print('res:"' + str(res)+'"')
         while True:
             if res == '$':
                 print('reset_buffer')
                 buffer_str = []
-                break;
+                break
+            if res == '\n':
+                break
         while True:
+            if res == '\n':
+                bteak
             res = ser.read()
             #print('res:"' + str(res)+'"')
             if res == '\n':
