@@ -13,9 +13,9 @@ def whoMission():
         returnjson = request.get_json(silent=True, cache=False, force=True)
         if returnjson['room'] == '0':
             return str(room_mission[0])
-        elif returnjson['code'] == '1':
+        elif returnjson['room'] == '1':
             return str(room_mission[1])
-        elif returnjson['code'] == '2':
+        elif returnjson['room'] == '2':
             return str(room_mission[2])
         return str(returnjson)
     if request.method == 'GET':
@@ -47,6 +47,7 @@ def missionComplete():
         return str(missionGage)
     else:
         return render_template('mission_test.html')
+
 @app.route('/missionCompleteShow',  methods=['GET', 'POST'])
 def missionCompleteShow():
     global room_mission
@@ -83,5 +84,6 @@ def vote_page():
 
 if __name__ == '__main__':
     IP = str(socket.gethostbyname(socket.gethostname()))
-    app.run(host="165.194.44.20", port=5000, debug=False)
+    print(IP)
+    app.run(host='0.0.0.0', port=5000, debug=False)
     app.run()

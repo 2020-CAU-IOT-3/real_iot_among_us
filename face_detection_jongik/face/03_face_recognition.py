@@ -127,9 +127,6 @@ while True:
 print("\n [INFO] Exiting Program and cleanup stuff")
 cam.release()
 cv2.destroyAllWindows()
-
-
-
 """
 import cv2
 import numpy as np
@@ -167,8 +164,8 @@ while True:
     #img = cv2.imread("C:\\Users\\yu990\\Desktop\\User.1.1.jpg")
     img = cv2.flip(img, 1) # Flip vertically
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-    
-    faces = faceCascade.detectMultiScale( 
+
+    faces = faceCascade.detectMultiScale(
         gray,
         scaleFactor = 1.2,
         minNeighbors = 5,
@@ -200,7 +197,7 @@ while True:
         r = requests.post(serverAddress, headers=headers, data=json.dumps(data))
         print("now:"+r.text)
     prev_id = id
-    cv2.imshow('camera',img) 
+    cv2.imshow('camera',img)
     k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
     if k == 27:
         break
