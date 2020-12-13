@@ -45,9 +45,9 @@ def missionstarter():
         server_command = 'whoMission'
         data = {'room': str(room_number)}
         r = requests.post(serverAddress+server_command, headers=headers, data=json.dumps(data))
-        print(r)
+        print(r.text)
         who_mission[int(r.text)] += 1
-        time.sleep(1/2)
+        time.sleep(1)
 
 serverAddress = 'http://192.168.0.17:5000/'
 headers = {'Content-Type': 'application/json'}
