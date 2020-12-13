@@ -6,6 +6,39 @@ ser = serial.Serial(
     baudrate=115200,
 )
 
+def startCommand(command):
+    global who_mission
+    global mission_thread
+    global mission_thread_count
+    if command == 's':
+        mission_thread_count = 1
+        who_mission = [0,0,0,0,0]
+        mission_thread = Thread(target=missionstarter)
+        mission_timeout_thread = Thread(target=timeoutThread)
+    elif command == 'e':
+        if mission_thread_count == 1
+            mission_thread_count = 0
+            max_index = who_mission.index(max(who_mission))
+            if max_index != 0 and max_index != 1:
+                server_command = "missionCompleteSend"
+                r = requests.post(serverAddress+server_command, headers=headers)
+
+def timeoutThread():
+    sleep(15)
+    mission_thread_count = 0
+    output_str = "$t"
+    ser.write(output_str.encode())
+
+def missionstarter():
+    global who_mission
+    global mission_thread_count
+    while mission_thread_count:
+        server_command = 'whoMission'
+        data = {'room': str(room_number)}
+        r = requests.post(serverAddress+server_command, headers=headers, data=json.dumps(data))
+        who_mission[int(r)] += 1
+        sleep(1/2)
+
 serverAddress = 'http://192.168.0.17:5000/'
 headers = {'Content-Type': 'application/json'}
 room_number = 1
@@ -30,38 +63,6 @@ while True:
             command = buffer[0]
             startCommand(command)
 
-def startCommand(command):
-    global who_mission
-    global mission_thread
-    global mission_thread_count
-    if command == 's':
-        mission_thread_count = 1
-        who_mission = [0,0,0,0,0]
-        mission_thread = Thread(target=missionstarter)
-        mission_timeout_thread = Thread(target=timeoutThread)
-    elif command == 'e'
-        if mission_thread_count = 1
-            mission_thread_count = 0
-            max_index = who_mission.index(max(who_mission))
-            if max_index != 0 and max_index != 1:
-                server_command = "missionCompleteSend"
-                r = requests.post(serverAddress+server_command, headers=headers)
-
-def timeoutThread:
-    sleep(15)
-    mission_thread_count = 0
-    output_str = "$t"
-    ser.write(output_str.encode())
-
-def missionstarter:
-    global who_mission
-    global mission_thread_count
-    while mission_thread_count:
-        server_command = 'whoMission'
-        data = {'room': str(room_number)}
-        r = requests.post(serverAddress+server_command, headers=headers, data=json.dumps(data))
-        who_mission[int(r)] += 1
-        sleep(1/2)    
 
 # Serial.write()
 """
