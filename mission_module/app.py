@@ -30,6 +30,7 @@ def startCommand(command):
                 r = requests.post(serverAddress+server_command, headers=headers)
 
 def timeoutThread():
+    global mission_thread_count
     print("start_timeout")
     time.sleep(5)
     mission_thread_count = 0
