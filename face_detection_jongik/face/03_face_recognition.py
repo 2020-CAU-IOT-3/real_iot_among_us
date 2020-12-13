@@ -139,8 +139,8 @@ room_number = 1
 
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
-recognizer.read('trainer\\trainer.yml')
-cascadePath = "cascades\\haarcascade_frontalface_default.xml"
+recognizer.read('trainer'+os.sep+'trainer.yml')
+cascadePath = "cascades"+os.sep+"haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascadePath)
 font = cv2.FONT_HERSHEY_SIMPLEX
 
