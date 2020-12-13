@@ -1,5 +1,5 @@
 import serial
-from threading
+import threading
 
 ser = serial.Serial(
     port='/dev/ttyACM0',
