@@ -30,7 +30,7 @@ def startCommand(command):
 
 def timeoutThread():
     print("start_timeout")
-    sleep(5)
+    time.sleep(5)
     mission_thread_count = 0
     output_str = "$t\n"
     print(output_str)
@@ -45,7 +45,7 @@ def missionstarter():
         data = {'room': str(room_number)}
         r = requests.post(serverAddress+server_command, headers=headers, data=json.dumps(data))
         who_mission[int(r)] += 1
-        sleep(1/2)
+        time.sleep(1/2)
 
 serverAddress = 'http://192.168.0.17:5000/'
 headers = {'Content-Type': 'application/json'}
