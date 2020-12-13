@@ -24,9 +24,10 @@ def startCommand(command):
     elif command == 'e':
         print("command:" + "e")
         if mission_thread_count == 1:
+
             mission_thread_count = 0
             max_index = who_mission.index(max(who_mission))
-            print(max_index)
+            print('mission_complete:' + str(max_index))
             if max_index != 0:
                 server_command = "missionCompleteSend"
                 r = requests.post(serverAddress+server_command, headers=headers)
