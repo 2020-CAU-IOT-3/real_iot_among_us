@@ -6,7 +6,7 @@ missionGage = 10
 alive_list = ['red', 'blue', 'white', 'black']
 app = Flask(__name__, static_url_path='/static')
 
-room_mission = {'0':'1', '1':'1', '2':'1'}
+room_mission = {'0':'0', '1':'0', '2':'0'}
 @app.route("/whoMission", methods=['GET', 'POST'])
 def whoMission():
     if request.method == 'POST':
@@ -71,6 +71,7 @@ def missionCrewUpdate():
     if request.method == 'POST':
         returnjson = request.get_json(silent=True, cache=False, force=True)
         room_mission[returnjson['room']] = returnjson['type']
+        print(room_mission[returnjson['room']])
         return 'complete:'+ str(room_mission[returnjson['room']])
     else:
         return '<h1>get</h1>'

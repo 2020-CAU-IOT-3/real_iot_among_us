@@ -133,7 +133,7 @@ import numpy as np
 import os
 import requests,json,threading,time
 
-serverAddress = 'http://165.194.44.20:5000/missionCrewUpdate'
+serverAddress = 'http://192.168.0.17:5000/missionCrewUpdate'
 headers = {'Content-Type': 'application/json'}
 room_number = 1
 
@@ -148,7 +148,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 id = 0
 
 # names related to ids: example ==> loze: id=1,  etc
-names = ['None', 'imposter', 'crewmate1', 'crewmate2', 'crewmate3']
+names = ['0', '1', '2', '3', '4']
 
 # Initialize and start realtime video capture
 cam = cv2.VideoCapture(0)
@@ -173,10 +173,9 @@ while True:
        )
     if len(faces) == 0:
         id = 'not_human'
-        print("Face Not Found!")
+        #print("Face Not Found!")
 
     for(x,y,w,h) in faces:
-
         cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
         id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
         # Check if confidence is less them 100 ==> "0" is perfect match
@@ -190,7 +189,7 @@ while True:
         cv2.putText(img, str(id), (x+5,y-5), font, 1, (255,255,255), 2)
         cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)
 
-
+    cv2.imshow('camera', img)
 
     if prev_id != id:
         data = {'room': str(room_number), 'type': id}
