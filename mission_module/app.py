@@ -53,13 +53,13 @@ mission_thread_count = 0
 
 while True:
     if ser.readable():
-        buffer = ''
+        buffer_str = ''
         res = ser.read()
         print('res:"' + str(res)+'"')
         while True:
             if res == '$':
                 print('reset_buffer')
-                buffer = ''
+                buffer_str = ''
                 break;
             while True:
                 res = ser.read()
@@ -67,10 +67,10 @@ while True:
                 if res == '\n':
                     break;
                 else :
-                    buffer += res
+                    buffer_str += res
 
-            print(buffer)
-            command = buffer[0]
+            print(buffer_str)
+            command = buffer_str[0]
             startCommand(command)
 
 
