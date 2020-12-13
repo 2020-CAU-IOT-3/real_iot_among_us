@@ -80,9 +80,7 @@ while True:
             buffer_str = []
             mission_thread_count = 0
             timeout_count = 30
-            if mission_thread_timeout != None:
-                print("kill timeout")
-                mission_thread_timeout.stop()
+            
             while True:
                 res = ser.read()
                 #print('res:"' + str(res)+'"')
