@@ -32,7 +32,7 @@ def startCommand(command):
 def timeoutThread():
     global mission_thread_count
     print("start_timeout")
-    time.sleep(5)
+    time.sleep(30)
     mission_thread_count = 0
     output_str = "$t\n"
     print(output_str)
