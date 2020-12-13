@@ -12,11 +12,11 @@ def whoMission():
     if request.method == 'POST':
         returnjson = request.get_json(silent=True, cache=False, force=True)
         if returnjson['room'] == '0':
-            return str(room_mission[0])
+            return str(room_mission['0'])
         elif returnjson['room'] == '1':
-            return str(room_mission[1])
+            return str(room_mission['1'])
         elif returnjson['room'] == '2':
-            return str(room_mission[2])
+            return str(room_mission['2'])
         return str(returnjson)
     if request.method == 'GET':
         return 'test'
