@@ -35,9 +35,10 @@ def timeoutThread():
     global timeout_count
     print("start_timeout")
     while True:
-        timeout_count -= 1
+        if(timeout_count > 0)
+            timeout_count -= 1
         print(timeout_count)
-        if(timeout_count == 0):
+        if(timeout_count <= 0):
             break;
         time.sleep(1)
     mission_thread_count = 0
@@ -77,6 +78,9 @@ while True:
             buffer_str = []
             mission_thread_count = 0
             timeout_count = 30
+            if mission_thread_timeout != None:
+                print("kill timeout")
+                mission_thread_timeout.stop()
             while True:
                 res = ser.read()
                 #print('res:"' + str(res)+'"')
