@@ -26,7 +26,8 @@ def startCommand(command):
         if mission_thread_count == 1:
             mission_thread_count = 0
             max_index = who_mission.index(max(who_mission))
-            if max_index != 0 and max_index != 1:
+            print(max_index)
+            if max_index != 0:
                 server_command = "missionCompleteSend"
                 r = requests.post(serverAddress+server_command, headers=headers)
 
@@ -80,7 +81,7 @@ while True:
             buffer_str = []
             mission_thread_count = 0
             timeout_count = 30
-            
+
             while True:
                 res = ser.read()
                 #print('res:"' + str(res)+'"')

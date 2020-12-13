@@ -6,7 +6,7 @@ missionGage = 10
 alive_list = ['red', 'blue', 'white', 'black']
 app = Flask(__name__, static_url_path='/static')
 
-room_mission = {'0':'-1', '1':'-1', '2':'-1'}
+room_mission = {'0':'1', '1':'1', '2':'1'}
 @app.route("/whoMission", methods=['GET', 'POST'])
 def whoMission():
     if request.method == 'POST':
