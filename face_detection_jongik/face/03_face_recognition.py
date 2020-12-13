@@ -172,7 +172,7 @@ while True:
         minSize = (int(minW), int(minH)),
        )
     if len(faces) == 0:
-        id = 'not_human'
+        id = '0'
         #print("Face Not Found!")
 
     for(x,y,w,h) in faces:

@@ -23,7 +23,7 @@ def startCommand(command):
         mission_thread_timeout.start()
     elif command == 'e':
         print("command:" + "e")
-        #if mission_thread_count == 1:    
+        #if mission_thread_count == 1:
         mission_thread_count = 0
         max_index = who_mission.index(max(who_mission))
         print('mission_complete:' + str(max_index))
@@ -40,7 +40,7 @@ def timeoutThread():
         if(timeout_count > 0):
             timeout_count -= 1
             my_timeout -= 1
-        print(timeout_count)
+        print('left_mission_time: '+str(timeout_count))
         if(timeout_count <= 0):
             mission_thread_count = 0
             output_str = "$t\n"
@@ -57,7 +57,7 @@ def missionstarter():
         server_command = 'whoMission'
         data = {'room': str(room_number)}
         r = requests.post(serverAddress+server_command, headers=headers, data=json.dumps(data))
-        print(r.text)
+        print('mission_doing_people: '+ r.text)
         who_mission[int(r.text)] += 1
         time.sleep(1)
 
