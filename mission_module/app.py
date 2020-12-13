@@ -1,5 +1,5 @@
 import serial
-from threading import Thread
+from threading
 
 ser = serial.Serial(
     port='/dev/ttyACM0',
@@ -14,8 +14,10 @@ def startCommand(command):
         print("command:" + "s")
         mission_thread_count = 1
         who_mission = [0,0,0,0,0]
-        mission_thread = Thread(target=missionstarter)
-        mission_timeout_thread = Thread(target=timeoutThread)
+        mission_thread =  threading.Thread(target=missionstarter)
+        mission_thread.start()
+        mission_timeout_thread =  threading.Thread(target=timeoutThread)
+        mission_timeout_thread.start()
     elif command == 'e':
         print("command:" + "e")
         if mission_thread_count == 1:
@@ -60,6 +62,7 @@ while True:
         if res == '$':
             print('reset_buffer')
             buffer_str = []
+            mission_thread_count = 0
             while True:
                 res = ser.read()
                 #print('res:"' + str(res)+'"')
