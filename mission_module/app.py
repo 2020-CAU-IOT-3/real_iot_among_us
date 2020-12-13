@@ -57,26 +57,22 @@ while True:
         buffer_str = []
         res = ser.read()
         print('res:"' + str(res)+'"')
-        while True:
-            if res == '$':
-                print('reset_buffer')
-                buffer_str = []
-                break
-            if res == '\n':
-                break
-        while True:
-            if res == '\n':
-                bteak
-            res = ser.read()
-            #print('res:"' + str(res)+'"')
-            if res == '\n':
-                break;
-            else :
-                buffer_str.append(res)
+        if res == '$':
+            print('reset_buffer')
+            buffer_str = []
+            while True:
+                res = ser.read()
+                #print('res:"' + str(res)+'"')
+                if res == '\n':
+                    break;
+                else :
+                    buffer_str.append(res)
+            print(buffer_str)
+            command = buffer_str[0]
+            startCommand(command)
 
-        print(buffer_str)
-        command = buffer_str[0]
-        startCommand(command)
+
+
 
 
 # Serial.write()
