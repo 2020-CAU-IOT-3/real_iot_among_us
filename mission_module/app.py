@@ -35,7 +35,7 @@ def timeoutThread():
     global timeout_count
     print("start_timeout")
     while True:
-        if(timeout_count > 0)
+        if(timeout_count > 0):
             timeout_count -= 1
         print(timeout_count)
         if(timeout_count <= 0):
