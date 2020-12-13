@@ -11,11 +11,13 @@ def startCommand(command):
     global mission_thread
     global mission_thread_count
     if command == 's':
+        print("command:" + "s")
         mission_thread_count = 1
         who_mission = [0,0,0,0,0]
         mission_thread = Thread(target=missionstarter)
         mission_timeout_thread = Thread(target=timeoutThread)
     elif command == 'e':
+        print("command:" + "e")
         if mission_thread_count == 1:
             mission_thread_count = 0
             max_index = who_mission.index(max(who_mission))
@@ -24,7 +26,8 @@ def startCommand(command):
                 r = requests.post(serverAddress+server_command, headers=headers)
 
 def timeoutThread():
-    sleep(15)
+    print("start_timeout")
+    sleep(5)
     mission_thread_count = 0
     output_str = "$t"
     ser.write(output_str.encode())
@@ -32,6 +35,7 @@ def timeoutThread():
 def missionstarter():
     global who_mission
     global mission_thread_count
+    print("mission_start")
     while mission_thread_count:
         server_command = 'whoMission'
         data = {'room': str(room_number)}
@@ -52,6 +56,7 @@ while True:
         res = ser.read()
         while True:
             if res == '$':
+                print('reset_buffer')
                 buffer = ''
                 break;
             while True:
