@@ -11,6 +11,7 @@ ser = serial.Serial(
 def startCommand(command):
     global who_mission
     global mission_thread
+    global mission_thread_timeout
     global mission_thread_count
     if command == 's':
         print("command:" + "s")
@@ -18,8 +19,8 @@ def startCommand(command):
         who_mission = [0,0,0,0,0]
         mission_thread =  threading.Thread(target=missionstarter)
         mission_thread.start()
-        mission_timeout_thread =  threading.Thread(target=timeoutThread)
-        mission_timeout_thread.start()
+        mission_thread_timeout =  threading.Thread(target=timeoutThread)
+        mission_thread_timeout.start()
     elif command == 'e':
         print("command:" + "e")
         if mission_thread_count == 1:
@@ -31,8 +32,14 @@ def startCommand(command):
 
 def timeoutThread():
     global mission_thread_count
+    global timeout_count
     print("start_timeout")
-    time.sleep(30)
+    while True:
+        timeout_count -= 1
+        print(timeout_count)
+        if(timeout_count == 0):
+            break;
+        time.sleep(1)
     mission_thread_count = 0
     output_str = "$t\n"
     print(output_str)
@@ -56,7 +63,9 @@ room_number = 1
 
 who_mission = [0,0,0,0,0] #None, imposter, crew1, crew2, crew3
 mission_thread = None
+mission_thread_timeout = None
 mission_thread_count = 0
+timeout_count = 30
 
 while True:
     if ser.readable():
@@ -67,6 +76,7 @@ while True:
             print('reset_buffer')
             buffer_str = []
             mission_thread_count = 0
+            timeout_count = 30
             while True:
                 res = ser.read()
                 #print('res:"' + str(res)+'"')
