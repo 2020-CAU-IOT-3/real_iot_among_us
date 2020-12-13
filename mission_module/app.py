@@ -1,4 +1,5 @@
 import serial
+import time
 import threading
 import requests
 ser = serial.Serial(
