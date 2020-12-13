@@ -53,25 +53,25 @@ mission_thread_count = 0
 
 while True:
     if ser.readable():
-        buffer_str = ''
+        buffer_str = []
         res = ser.read()
-        print('res:"' + str(res)+'"')
+        #print('res:"' + str(res)+'"')
         while True:
             if res == '$':
                 print('reset_buffer')
-                buffer_str = ''
+                buffer_str = []
                 break;
-            while True:
-                res = ser.read()
-                print('res:"' + str(res)+'"')
-                if res == '\n':
-                    break;
-                else :
-                    buffer_str += res
+        while True:
+            res = ser.read()
+            #print('res:"' + str(res)+'"')
+            if res == '\n':
+                break;
+            else :
+                buffer_str.append(res)
 
-            print(buffer_str)
-            command = buffer_str[0]
-            startCommand(command)
+        print(buffer_str)
+        command = buffer_str[0]
+        startCommand(command)
 
 
 # Serial.write()
