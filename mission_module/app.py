@@ -60,7 +60,8 @@ while True:
                     break;
                 else :
                     buffer += res
-                print(buffer)
+
+            print(buffer)
             command = buffer[0]
             startCommand(command)
 
